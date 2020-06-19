@@ -1,0 +1,100 @@
+#pagination{
+	color:#BBB;
+	width:100%;
+	display:inline-block;
+}
+#pagination>a{
+	color:#888;
+	margin:5px;
+	cursor:pointer;
+	font:bold 32px title;
+}
+#pagination>a:hover,#pagination>a.selected{
+	color:#D48;
+}
+#options{
+	margin:2px;
+	float:left;
+	clear:left;
+	max-width:450px;
+	border:1px solid #AAA;
+	width:calc(100% - 306px);
+}
+#filters{
+	color:#DDD;
+}
+#filters, #filterset, #optionset{
+	background-color:#383E49;
+}
+#filters>fieldset{
+	margin:8px;
+}
+#filters>fieldset>label{
+	display:block;
+}
+.caption>span{
+	padding-right:10px;
+	border-right:1px solid #CCC;
+}
+a.sticker{
+	width:300px;
+	vertical-align:top;
+	display:inline-block;
+	background-color:#FFF;
+	outline:1px dotted #CCC;
+	margin:10px 0px 10px 10px;
+	box-shadow:8px 10px 4px -9px rgba(0,0,0,0.5);
+}
+a.sticker>img{
+	width:100%;
+	height:200px;
+	object-fit:cover;
+}
+a.sticker>.name{
+	padding:5px 10px;
+	text-align:left;
+	font:20px auxiliary;
+}
+a.sticker>.options{
+	color:#888;
+	margin:0px 8px;
+	font:15px main;
+	text-align:justify;
+}
+a.sticker>.options::after{
+	width:100%;
+	content:"";
+	display:inline-block;
+}
+a.sticker>.options>span{
+	margin-top:5px;
+	display:inline-block;
+}
+
+/***********************************************/
+
+tbody>tr>td{
+	height:30px;
+	padding:0 10px;
+}
+tbody>tr:nth-child(even){
+	background-color:#FFF;
+}
+tbody>tr:nth-child(odd){
+	background-color:#EEE;
+}
+tbody>tr>td:focus{
+	background-color:#DFE;
+}
+.raise{
+	cursor:pointer;
+	font:24px tools;
+	transform: rotate(90deg);
+}
+.input-cell{
+	width:100%;
+	height:100%;
+	border:0px;
+	box-sizing:border-box;
+	background-color:transparent;
+}

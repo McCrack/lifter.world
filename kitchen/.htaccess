@@ -1,0 +1,27 @@
+# Кодировка
+AddDefaultCharset utf-8
+
+# Запретить индексацию папок без индексного файла
+Options -Indexes
+
+#Options +FollowSymlinks
+
+Addtype font/opentype .otf
+Addtype font/truetype .ttf
+AddOutputFilterByType DEFLATE font/opentype font/truetype
+
+AddOutputFilterByType DEFLATE text/html text/plain text/css application/json
+AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript
+
+# Выполнять скрипты в файлах с расширением .php
+AddType application/x-httpd-php .php
+
+# Включить mod_rewrite
+RewriteEngine on
+RewriteBase /
+
+# ЧПУ
+RewriteRule ^(xhr)/(.*)$ ajax.php?params=$2 [QSA,NC,L]
+RewriteRule ^(actions)/*(.*) actions.php?params=$2 [QSA,NC,L]
+RewriteRule ^(boxfather)/(.*)$ boxfather.php?params=$2 [QSA,NC,L]
+RewriteRule !^(.*)(boxfather\.php|actions\.php|ajax\.php|\.png|\.ico|\.txt|\.jpg|\.jpeg|\.gif|\.mp4|\.mov|\.css|\.js|\.svg|\.ttf|\.woff|\.json|\.html|\.m4v)$ index.php?params=%{REQUEST_URI} [QSA,NC]

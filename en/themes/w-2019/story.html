@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html amp lang="<?=$page->language?>">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+
+		<title><?=$page->title?></title>
+		<meta name="title" content="<?=$page->title?>">
+		<meta name="description" content="<?=$page->description?>">
+
+		<link rel="canonical" href="<?=$page->canonical?>">
+		
+		<link rel="icon" type="image/png" href="/themes/<?=THEME?>/images/favicon.png">
+
+
+		<meta property="fb:pages" content="<?=$config->{'fb:pages'}?>">
+		<meta property="fb:app_id" content="<?=$config->{'fb:app_id'}?>">
+
+		<meta property="og:url" content="<?=$page->canonical?>">
+		<meta property="og:title" content="<?=$page->header?>">
+		<meta property="og:type" content="article">
+		<meta property="og:site_name" content="<?=$page->SiteName?>">
+		<meta property="og:description" content="<?=$page->description?>">
+<? $preview = getimagesize($page->preview); ?>
+		<meta property="og:image" content="<?=$page->preview?>">
+		<meta property="og:image:type" content="<?=$preview['mime']?>">
+		<meta property="og:image:width" content="<?=$preview[0]?>">
+		<meta property="og:image:height" content="<?=$preview[1]?>">
+		<meta property="og:locale" content="$config->{$page->language}?>">
+		<meta property="fb:pages" content="<?=$config->{'fb:pages'}?>">
+		<meta property="fb:app_id" content="<?=$config->{'fb:app_id'}?>">
+
+		
+		<meta name="theme-color" content="#111" />
+			
+		<meta name="copyright" content="<?=$page->SiteName?>">
+		<meta name="Author" lang="ru" content="<?=$page->author?>">
+			
+		<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+		<style amp-custom>
+		:root{
+			--caption-color:<?=$customize['caption-color']?>;
+			--caption-bg:<?=HexToRgba($customize['caption-bg'], $customize['caption-opacity'])?>;
+			--caption-font:"<?=$customize['caption-font']?>";
+			--caption-size:<?=$customize['caption-size']?>px;
+			--text-color:<?=$customize['text-color']?>;
+			--text-bg:<?=HexToRgba($customize['text-bg'], $customize['text-opacity'])?>;
+			--text-font:"<?=$customize['text-font']?>";
+			--text-size:<?=$customize['text-size']?>px;
+		}
+		<?include_once("themes/".THEME."/includes/stories/default.css");
+		$types = ["otf"=>"opentype","ttf"=>"truetype","woff"=>"woff"];
+		foreach(array_map("pathinfo", glob("fonts/*.{otf,ttf,woff}", GLOB_BRACE)) as $file):?>
+    	
+    	@font-face{
+        	font-family:'<?=str_replace("-", " ", $file['filename'])?>';
+        	src:url(/<?=($file['dirname']."/".$file['basename'])?>) format('<?=$types[$file['extension']]?>');
+    	}
+    	<?endforeach?>
+		</style>
+		
+		<!--<script async custom-element="amp-story-auto-ads" src="https://cdn.ampproject.org/v0/amp-story-auto-ads-0.1.js"></script>-->
+		<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+		<script async custom-element="amp-video" src="https://cdn.ampproject.org/v0/amp-video-0.1.js"></script>
+		<script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
+		<script async src="https://cdn.ampproject.org/v0.js"></script>
+
+		<?foreach($page->schemes as $schema):?>
+		<script type="application/ld+json"><?=stripcslashes(JSON::encode($schema))?></script>
+		<?endforeach?>
+	</head>
+	<body>
+		<amp-story standalone title="<?=$page->header?>" publisher="Lifter" publisher-logo-src="<?=$page->logo?>" poster-portrait-src="<?=('img')?>" poster-landscape-src="<?=$page->preview?>">
+			
+			<!--
+			<amp-story-auto-ads>
+      			<script type="application/json">
+        		{
+					"ad-attributes":{
+						"type": "doubleclick",
+						"data-slot": "/30497360/a4a/amp_story_dfp_example"
+					}
+				}
+				</script>
+			</amp-story-auto-ads>
+			-->
+			<?foreach($story as $i=>$card):?>
+			<amp-story-page id="page-<?=($i+1)?>">
+				<?if($card['type']=="video"):?>
+				<amp-story-grid-layer template="fill">
+					<amp-video src="<?=$card['src']?>" autoplay loop poster="<?=$poster?>" preload="auto" layout="responsive" width="720" height="1280"></amp-video>
+				</amp-story-grid-layer>
+				<?elseif($card['type']=="img"):?>
+				<amp-story-grid-layer template="fill">
+					<amp-img src="<?=$card['src']?>" layout="responsive" width="720" height="1280"></amp-img>
+				</amp-story-grid-layer>
+				<?endif?>
+				<amp-story-grid-layer template="fill" class="<?=$card['align']?>">
+					<section>
+						<div class="<?=$card['flex']?>">
+							<p class="caption" animate-in="<?=$card['animate']?>"><?=$card['header']?></p>
+							<p class="text" animate-in="<?=$card['animate']?>"><?=$card['text']?></p>
+						</div>
+					</section>
+				</amp-story-grid-layer>
+			</amp-story-page>
+			<?endforeach?>
+			<!--<amp-story-bookend src="<?=$page->root?>/stories-config/<?=$page->PageID?>" layout="nodisplay"></amp-story-bookend>-->
+		</amp-story>
+	</body>
+</html>

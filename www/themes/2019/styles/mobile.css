@@ -1,0 +1,128 @@
+#wrapper>nav{
+	z-index:4;
+	width:100%;
+	position:fixed;
+	overflow:hidden;
+	transition:height .5s, background-color .5s;
+}
+#wrapper>aside{
+	width:100%;
+	height:100px;
+	position:relative;
+}
+
+/**************************************/
+
+#wrapper>aside>section{
+	background-color:#00ADF0;
+}
+#loft{
+	font-size:0;
+	display:flex;
+	justify-content:space-between;
+}
+#logo{
+	float:left;
+	height:80px;
+	margin:10px 5px;
+}
+
+/**************************************/
+
+#loft>label{
+	z-index:5;
+	width:100px;
+	height:100%;
+	text-align:center;
+	position:relative;
+	vertical-align:top;
+	display:inline-block;
+	transition:background-color .5s;
+}
+
+/* SHOWER ****************************/
+
+input~#wrapper>nav{
+	height:0;
+}
+input:checked~#wrapper>nav{
+	height:100%;
+	background-color:black;
+}
+#wrapper>nav>section{
+	display:none;
+}
+#menu-shower:checked~#wrapper>nav>section#main-menu,
+#keywords-shower:checked~#wrapper>nav>section#keywords{
+	display:flex;
+}
+#menu-shower-btn::after,
+#keywords-shower-btn::after{
+	color:#EEE;
+	height:100%;
+	line-height:100px;
+	display:inline-block;
+	transition:transform .4s;
+}
+#menu-shower-btn::after{
+	content:"☰";
+	font-size:52px;
+}
+#keywords-shower-btn::after{
+	content:"⌘";
+	font-size:40px;
+}
+#menu-shower:checked~#wrapper #menu-shower-btn::after,
+#keywords-shower:checked~#wrapper #keywords-shower-btn::after{
+	content:"✕";
+	font-size:64px;
+	transform:rotate(90deg);
+}
+
+/* BREAD CRUMBS **********************/
+
+#breadcrumbs{
+	margin-left:-14px;
+}
+#breadcrumbs>a{
+	font-size:14px;
+}
+
+/**************************************/
+
+#wrapper>main>article{
+	padding:10px 20px;
+}
+#wrapper>main>article>header{
+	margin:0 -10px 0 -15px;
+}
+#wrapper>main>article>figure,
+#wrapper>main>article>.mediaset{
+	margin:0 -20px;
+}
+
+/**************************************/
+
+#feed{
+	padding:8px;
+}
+.snippet>img,
+.snippet>video{
+	width:100%;
+}
+.snippet>div.caption{
+	margin-top:-40px;
+}
+.snippet>div.caption::first-letter{
+	color:gold;
+	font-weight:bold;
+}
+.snippet>div.caption>span{
+	color:white;
+	background-color:black;
+	border:1px solid white;
+}
+.snippet>div.date{
+	color:#555;
+	text-align:right;
+}

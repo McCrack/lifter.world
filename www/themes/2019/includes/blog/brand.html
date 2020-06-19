@@ -1,0 +1,22 @@
+<div class="column">
+	<?php
+	$feed = $mySQL->get("
+	SELECT * FROM gb_blogfeed
+	CROSS JOIN gb_pages USING(PageID) 
+	WHERE
+		category LIKE 'brands'
+		AND language LIKE {str}
+		AND published & 2
+		AND created<{int}
+
+	ORDER BY created DESC", USER_LANG,time(),PAGE_ID);
+	foreach($feed as $snippet):?>
+
+	<a class="snippet" href="<?=LANG_INDEX?>/<?=translite($snippet['header'].'-'.$snippet['PageID'])?>">
+		<div class="date"><?=date("d M", $snippet['created'])?></div>
+		<img src="<?=$snippet['preview']?>" alt="<?=$snippet['header']?>">
+		<div class="caption"><span><?=$snippet['header']?></span></div>
+	</a>
+	
+	<?endforeach?>
+</div>

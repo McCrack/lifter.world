@@ -1,0 +1,40 @@
+<!-- CHECKBOXES -->
+<fieldset><legend>Check fields</legend>
+    <label><input name="check" value="1" type="checkbox" hidden><span> Checkbox 1</span></label>
+    <label><input name="box" value="2" type="checkbox" hidden><span> Checkbox 2</span></label>
+</fieldset>
+
+
+<!-- RADIO BUTTONS -->
+<fieldset><legend>Radio buttons</legend>
+    <label><input name="radio" value="1" type="radio" hidden><span> Radio button 1</span></label>
+    <label><input name="radio" value="2" type="radio" hidden><span> Radio button 2</span></label>
+</fieldset>
+
+<!-- SELECT FIELD -->
+<div class="select" title="Select:">
+    <select name="select" class="active-txt">
+        <option>Value 1</option>
+        <option>Value 2</option>
+        <option>Value 3</option>
+    </select>
+</div>
+
+<!-- IMAGE SELECT -->
+<div class="toolbar t">
+	<input name="image" value="" placeholder="Image URL" type="text" size="60">
+	<label title="select image" class="tool" data-translate="title">
+		&#xf07c;
+		<script>
+		(function(btn){
+			btn.onclick=function(){
+				new window.parent.Box(null, "boxfather/imagebox",function(imgbox){
+					btn.previousElementSibling.value = imgbox.selected.value;
+				});
+			}
+		})(document.currentScript.parentNode);
+		</script>
+	</label>
+</div>
+<!-- TEXT FIELD -->
+<input type="text" name="text">

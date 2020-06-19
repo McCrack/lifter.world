@@ -1,0 +1,241 @@
+#items{
+	background-color:#DDD;
+}
+a.sticker{
+	width:99%;
+	filter:saturate(0%);
+	margin:0px 0px 10px 0px;
+	background-color:#383E49;
+	box-shadow:0px 10px 4px -8px rgba(0,0,0,0.5);
+	transition:filter .5s;
+}
+a.sticker>.model{
+	color:#EEE;
+	padding:10px;
+}
+a.sticker:hover,
+a.sticker.selected{
+	filter:saturate(100%);
+}
+/*********************************************/
+
+@media (max-width: 400px){
+	#cover, #price-form, #options, #filters{
+		width:100%;
+	}
+}
+@media (min-width: 401px){
+	#cover, #options{
+		float:left;
+		margin:2px;
+		max-width:450px;
+		width:calc(55% - 4px);
+	}
+	#price-form, #filters{
+		float:left;
+		margin:2px;
+		max-width:400px;
+		width:calc(45% - 4px);
+		box-sizing:border-box;
+	}
+}
+#cover{
+	color:#777;
+}
+#cover>fieldset{
+	padding:11px 4px;
+	margin:0px 0px 2px 0px;
+	background-color:#EAEAEA;
+}
+#cover>textarea{
+	resize:none;
+	width:100%;
+	height:70px;
+	padding:10px;
+	border-radius:3px;
+	border:1px solid #CCC;
+	box-sizing:border-box;
+}
+textarea#pName{
+	font:20px auxiliary;
+}
+textarea#sDesc{
+	font:16px main;
+}
+
+
+/*********************************************/
+
+#model{
+	background:linear-gradient(to top, #EAEAEA, #FAFAFA);
+}
+#price-form{
+	color:#777;
+	height:445px;	
+	padding:10px 6px;
+	text-align:right;
+	font:15px auxiliary;
+	background:linear-gradient(to top, #EAEAEA, #FAFAFA);
+}
+#price-form>fieldset{
+	border-width:1px 0px;
+}
+fieldset input, fieldset select{
+	color:#777;
+	margin:6px 4px;
+	padding:3px 5px;
+	border-radius:3px;
+	border:1px solid #AAA;
+}
+fieldset select{
+	min-width:60px;
+	padding:2px 5px;
+}
+
+/*********************************************/
+
+#options{
+	clear:left;
+	outline:1px solid #AAA;
+}
+#related,
+#filters{
+	color:#DDD;
+	padding-bottom:6px;
+	background-color:#383E49;
+}
+#related fieldset,
+#filters>fieldset{
+	margin:8px;
+}
+#related fieldset>label,
+#filters>fieldset>label{
+	display:block;
+}
+
+/*********************************************/
+
+.leftpoint{
+	float:left;
+	margin-right:-50px;
+	background-image:url("/images/back.png");
+}
+.rightpoint{
+	float:right;
+	margin-left:-50px;
+	background-image:url("/images/next.png");
+}
+.leftpoint,.rightpoint{
+	width:50px;
+	cursor:pointer;
+	position:relative;
+	padding-bottom:58%;
+	background-size:40% auto;
+	background-position:center;
+	background-repeat:no-repeat;
+	transition:background 0.4s ease;
+}
+.leftpoint:hover,.rightpoint:hover{
+	background-color:rgba(0,0,0,0.1);
+}
+#slideshow{
+	width:100%;
+	overflow:auto;
+	font-size:0px;
+	white-space:nowrap;
+	background-color:#FFF;
+	scroll-snap-type:mandatory;
+    scroll-snap-points-x:repeat(100%);
+}
+.slide{
+	width:100%;
+	padding-bottom:58%;
+	vertical-align:top;
+	display:inline-block;
+	background-size:cover;
+	background-position:center;
+}
+.imagelist>img{
+	margin:4px;
+	width:100px;
+	height:100px;
+	cursor:pointer;
+	object-fit:cover;
+	border-radius:5px;
+	border:1px solid #CCC;
+}
+.imagelist>img:hover{
+	margin:3px;
+	border:2px solid #DDD;
+}
+
+/*********************************************/
+
+#discount-box>.environment{
+	color:#DDD;
+	height:100%;
+	box-sizing:border-box;
+	background-color:#484E59;
+}
+#discount-box>.leftbar{
+	height:100%;
+	padding:10px;
+	overflow-y:scroll;
+	box-sizing:border-box;
+	border:1px solid #CCC;
+	background-color:white;
+}
+#discount-box fieldset{
+	height:100px;
+	margin:6px 4px 0px 4px;
+}
+#discount-box input, #discount-box textarea{
+	margin:4px;
+	border-radius:3px;
+	border:1px solid #BBB;
+	box-sizing:border-box;
+}
+#discount-box input{
+	padding:2px 5px;
+	background-color:#EEE;
+}
+#discount-box textarea{
+	resize:none;
+	height:148px;
+	padding:10px;
+	width:calc(100% - 8px);
+}
+
+
+tbody>tr>td{
+	height:30px;
+	padding:0 10px;
+	outline:none;
+}
+tbody>tr:nth-child(even){
+	background-color:#FFF;
+}
+tbody>tr:nth-child(odd){
+	background-color:#EEE;
+}
+tbody>tr:hover{
+	cursor:default;
+	background-color:#DEF;
+}
+tbody>tr>td:focus{
+	background-color:#DFE;
+}
+
+/* Editor *********************************************************/
+
+.modules{
+	color:#555;
+	padding:12px;
+	display:block;
+	cursor:pointer;
+	font:18px auxiliary;
+	outline:1px outset #EEE;
+}
+.modules:hover{
+	background-color:#DAE0E5;
+}

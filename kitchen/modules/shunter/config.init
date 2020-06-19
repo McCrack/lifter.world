@@ -1,0 +1,44 @@
+{
+	"status":{
+		"type":"enum",
+		"value":"enabled",
+		"valid":[
+			"enabled",
+			"disabled"
+		]
+	},
+	"access":{
+		"type":"set",
+		"value":"admin, developer,editor,author,manager,surfer",
+		"valid":[
+			"admin",
+			"developer",
+			"editor",
+			"manager",
+			"author",
+			"designer",
+			"partner",
+			"surfer"
+		]
+	},
+	"mode":{
+		"type":"enum",
+		"value":"page",
+		"valid":[
+			"page",
+			"box"
+		]
+	},
+	"privileged groups":{
+		"type":"set",
+		"value":"developer,admin,editor",
+		"valid":[
+			"developer",
+			"admin",
+			"author",
+			"manager",
+			"editor",
+			"surfer"
+		]
+	}
+}

@@ -1,0 +1,32 @@
+{
+	"status":{
+		"type":"enum",
+		"value":"enabled",
+		"valid":[
+			"enabled",
+			"disabled"
+		]
+	},
+	"access":{
+		"type":"set",
+		"value":"admin, developer,author,surfer,manager,editor",
+		"valid":[
+			"admin",
+			"developer",
+			"editor",
+			"manager",
+			"author",
+			"designer",
+			"partner",
+			"surfer"
+		]
+	},
+	"mode":{
+		"type":"enum",
+		"value":"page",
+		"valid":[
+			"page",
+			"box"
+		]
+	}
+}

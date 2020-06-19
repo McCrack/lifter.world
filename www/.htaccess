@@ -1,0 +1,46 @@
+# Encoding
+AddDefaultCharset utf-8
+
+# Запретить индексацию папок без индексного файла
+Options +Indexes
+
+#Options +FollowSymlinks
+
+Addtype font/opentype .otf
+Addtype font/truetype .ttf
+AddOutputFilterByType DEFLATE font/opentype font/truetype
+
+AddOutputFilterByType DEFLATE text/html text/plain text/css application/json
+AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript
+
+# Выполнять скрипты только в .php файлах
+AddType application/x-httpd-php .php
+
+<FilesMatch "\.(ttf|otf|woff)$">
+    <IfModule mod_headers.c>
+        Header set Access-Control-Allow-Origin "*"
+    </IfModule>
+</FilesMatch>
+
+# Enabled mod_rewrite
+RewriteEngine on
+RewriteBase /
+
+RewriteCond %{HTTP_HOST} !(^lifter\.world)
+RewriteRule ^(.*)$ https://lifter.world [R=301,L]
+
+RewriteCond %{REQUEST_URI} ![^\/]$
+RewriteRule ^(.*)\/$ /$1 [R=301,L]
+
+RewriteRule ^home$ / [L,R=301]
+
+# If-Modified-Since (if php is not installed as cgi then comment lines below)
+#RewriteRule ^(.*)$ $1 [E=HTTP_IF_MODIFIED_SINCE:%{HTTP:If-Modified-Since}]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^ina$ ina.php [QSA,NC,L]
+RewriteRule ^(amp)/(.*)$ amp.php?params=$2 [QSA,NC,L]
+RewriteRule ^(ajax)/(.*)$ ajax.php?params=$2 [QSA,NC,L]
+RewriteRule !^(.*)(ajax\.php|amp\.php|ina\.php|\.txt|\.webmanifest|\.png|\.jpg|\.jpeg|\.gif|\.css|\.js|\.ttf|\.otf|\.woff|\.json|\.svg|\.html|\.xml)$ index.php?params=%{REQUEST_URI} [QSA,NC]

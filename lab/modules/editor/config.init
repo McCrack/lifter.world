@@ -1,0 +1,17 @@
+{
+	"status":{
+		"type":"enum",
+		"value":"disabled",
+		"valid":["enabled","disabled"]
+	},
+	"free access":{
+		"type":"enum",
+		"value":"YES",
+		"valid":["YES","NO"]
+	},
+	"mode":{
+		"type":"enum",
+		"value":"",
+		"valid":[""]
+	}
+}

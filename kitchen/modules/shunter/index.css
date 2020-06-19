@@ -1,0 +1,266 @@
+#wrapper>main{
+	font-size:0;
+	overflow-x:auto;
+	white-space:nowrap;
+}
+section.task-feed{
+	width:300px;
+	height:100%;
+	position:relative;
+	vertical-align:top;
+	display:inline-block;
+	border-left:1px solid #888;
+}
+section.task-feed>div{
+	text-transform:capitalize;
+}
+.task-stream>section,
+section.task-feed>aside{
+	overflow-y:auto;
+	padding-right:10px;
+	height:calc(100% - 38px);
+}
+
+.task-stream{
+	width:100%;
+	height:100%;
+	position:relative;
+}
+.task-stream>section{
+	display:grid;
+	grid-column-gap:6px;
+	grid-template-columns:repeat(auto-fill, minmax(260px, min-content));
+}
+.task-stream>div.h-bar>a{
+	color:inherit;
+	font-size:20px;
+	margin-right:4px;
+	text-transform:capitalize;
+}
+.task-stream>div.h-bar>a::before{
+	content:"●";
+	color:#EC8;
+	font-size:16px;
+	margin-right:6px;
+}
+.task-stream>div.h-bar>a.selected{
+	color:#00ADF0;
+}
+section.task-feed>div.count{
+	top:8px;
+	right:10px;
+	color:gold;
+	font-size:22px;
+	position:absolute;
+}
+
+.slot{
+	cursor:grab;
+	padding:6px;
+	position:relative;
+	transition:padding .5s;
+}
+.slot:active{
+	cursor:grabbing;
+}
+.grabbing>div.card{
+	opacity:.3;
+	transform:scale(0.7);
+}
+.card{
+	overflow:visible;
+	pointer-events:all;
+	background-color:white;
+	transition:transform .5s;
+}
+.slot>a,
+.slot>label.drop-task{
+	font-size:0;
+	color:white;
+	position:absolute;	
+	transition:font-size .3s;
+}
+.slot>a{
+	right:0;
+	bottom:0;
+	padding:0 4px;
+	border-radius:3px;
+	background-color:#123;
+}
+.slot>label.drop-task{
+	top:-4px;
+	right:-6px;
+	width:24px;
+	cursor:pointer;
+	line-height:24px;
+	text-align:center;
+	display:inline-block;
+}
+.card>div.task,
+.card>div.header,
+.card>div.preview{
+	pointer-events:none;
+}
+.card>div.preview>img{
+	filter:brightness(30%);
+	transition:filter .4s;
+}
+.slot:hover>a,
+.slot:hover>label.drop-task{
+	font-size:24px;
+}
+.slot:hover>div.card>div.preview>img{
+	filter:brightness(100%);
+}
+.card>div.header{
+	left:0;
+	top:45%;
+	width:90%;
+	padding:0;
+	font-size:18px;
+	line-height:1.4;
+	position:absolute;
+	white-space:normal;
+	transform:translateY(-50%);
+}
+.card>div.header::first-letter{
+	color:#EC8;
+}
+.card>div.header>span{
+	color:white;
+	padding:2px 10px;
+	background-color:black;
+	box-decoration-break:clone;
+	-webkit-box-decoration-break:clone;
+	box-shadow:4px 4px 4px 0 rgba(0,0,0, .6);
+}
+.card>div.task{
+	color:#555;
+	padding:8px;
+	font-size:14px;
+	overflow:hidden;
+	min-height:18px;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+
+.privileged .card>span.rank{
+	top:-4px;
+	left:-4px;
+	width:35px;
+	height:35px;
+	color:white;
+	position:absolute;
+	text-align:center;
+	border-radius:50%;
+	display:inline-block;
+	border:2px solid #EEE;
+	font:bold 15px/36px calibri,helvetica,arial;
+	box-shadow:5px 5px 4px -2px rgba(0,0,0, .5);
+}
+.card>span.rank,
+.card>div.preview>img::before{
+	color:white;
+	background-color:#08D;
+}
+.card>span.rank.article,
+.card.article>div.preview>img::before{
+	content:"\e926";
+	background-color:#804;
+}
+.card>span.rank.repost,
+.card.repost>div.preview>img::before{
+	content:"\e925";
+	background-color:#098;
+}
+.card>span.rank.video,
+.card.video>div.preview>img::before{
+	content:"\e929";
+	background-color:#111;
+}
+.card>span.rank.image,
+.card.image>div.preview>img::before{
+	content:"\e94a";
+	background-color:#B62;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+		
+#task>div.preview{
+	position:relative;
+	padding-bottom:56.25%
+}
+#task>div.preview>img{
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	object-fit:cover;
+	position:absolute;
+}
+#task input,
+#task textarea{
+	border-radius:3px;
+	border:1px solid #AAA;
+	box-sizing:border-box;
+	box-shadow:inset 0 0 7px -2px rgba(0,0,0, .3);
+	background-image:linear-gradient(to top, #FFF, #EEE);
+}
+#task .select{
+	height:26px;
+	margin:5px 0;
+	border-radius:3px;
+	border:1px solid #777;
+}
+#task select{			
+	text-align:center;
+}
+#task input{
+	padding:6px;
+	vertical-align:middle;
+}
+#task textarea{
+	padding:10px;
+	font:14px calibri,helvetica,arial;
+}
+#task>input[name='link'],
+#task>input[name='image']{
+	width:calc(100% - 50px);
+}
+#task>input[name='image']{
+	margin-left:6px;
+}
+#task div.input-with-select{
+	left:5px;
+	top:10px;
+	position:absolute;
+}
+#task textarea[name="header"]{
+	left:5px;
+	bottom:10px;
+	width:80%;
+	height:68px;
+	resize:none;
+	font-weight:bold;
+	position:absolute;
+}
+#task>textarea[name="task"]{
+	width:100%;
+	height:120px;
+	resize:vertical;
+}
+#task input[type='number']{
+	width:50px;
+	border:1px solid #999;
+	background:transparent;
+}
+
+#task input[name='ind']+label.tool{
+	color:#777;
+}
+#task input[name='ind']+label.tool:hover{
+	color:white;
+}
+#task input[name='ind']:checked+label.tool{
+	color:#E53;
+}

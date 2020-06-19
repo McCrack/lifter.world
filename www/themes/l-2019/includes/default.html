@@ -1,0 +1,60 @@
+<section id="topbar">
+	<nav id="breadcrumbs">
+	<?foreach($breadcrumb['itemListElement'] as $item):?>
+		<a href="<?=$item['item']['id']?>"><?=$item['item']['name']?></a>
+	<?endforeach?>
+	</nav>
+	<div>
+		<div class="fb-save"></div>
+	</div>
+</section>
+<article class="light">
+	<header>
+		<time dateTime="<?=date("c", $item['created'])?>"><?=date("d M, H:i", $page['created'])?></time>
+		<nav>
+		<?$tags = $mySQL->getGroup("SELECT KeyWORD FROM blog_vs_keywords CROSS JOIN gb_keywords USING(KeyID) WHERE PageID={int} ORDER BY rating DESC", PAGE_ID)['KeyWORD'];
+		foreach($tags as $keyword):?>
+			<a href="<?=LANG_INDEX?>/<?=$keyword?>"><?=$wordlist->{$keyword}?></a>
+		<?endforeach?>
+		</nav>
+		<figure>
+			<img src="<?=$page['preview']?>" alt="<?=$page['header']?>">
+		</figure>
+		<h1><?=$page['header']?></h1>
+		<h2><?=$page['subheader']?></h2>
+	</header>
+	<?=gzdecode($page['content'])?>
+	<address class="title" title="author" data-translate="title"><?=$author?></address>
+	<time dateTime="<?=date("c", $item['created'])?>"><?=date("d M, Y", $page['created'])?></time>
+	<br><br><hr>
+	<div id="share-btns" title="<?=$wordlist->share?>:">
+		<span title="Facebook" class="facebook icons title" onclick="share.facebook()">
+		 <span data-translate="textContent">share</span>
+		</span>
+		<span title="Facebook messenger" class="messenger icons title" onclick="send.messenger()"></span>
+		<a title="Viber" class="viber icons title" href="viber://forward?text=<?=$canonical?>"></a>
+		<a title="Telegram" class="telegram icons title" href="tg://msg?url=<?=$canonical?>"></a>
+	</div>
+</article>
+<section id="feed">
+<?php
+$feed = $mySQL->get("
+SELECT * FROM gb_blogfeed
+CROSS JOIN gb_pages USING(PageID) 
+WHERE
+	language LIKE {str}
+	AND published & 2
+	AND created<{int}
+ORDER BY created DESC
+LIMIT 20", USER_LANG,$page['created']);
+foreach($feed as $snippet):?>
+	<a class="snippet" href="<?=LANG_INDEX?>/<?=translite($snippet['header'].'-'.$snippet['PageID'])?>">
+	<?if(empty($snippet['video'])):?>
+		<div class="preview"><img src="<?=$snippet['preview']?>" alt="<?=$snippet['header']?>"></div>
+	<?else:?>
+		<div class="preview video"><video src="<?=$snippet['video']?>" muted poster="<?=$snippet['preview']?>"></video></div>
+	<?endif?>
+		<div class="caption"><?=$snippet['header']?></div>
+	</a>
+<?endforeach?>
+</section>

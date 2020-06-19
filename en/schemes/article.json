@@ -1,0 +1,25 @@
+{
+	"@context":"http://schema.org",
+	"@type":"NewsArticle",
+	"mainEntityOfPage":{
+		"@type":"WebPage",
+		"@id":"md:canonical"
+	},
+	"headline":"md:header",
+	"image":"md:preview",
+	"datePublished":"md:Created_ISO_8601",
+	"dateModified":"md:Modified_ISO_8601",
+	"author":{
+		"@type":"Person",
+		"name":"md:author"
+	},
+	"publisher":{
+		"@type":"Organization",
+		"name":"md:SiteName",
+		"logo":{
+			"@type":"ImageObject",
+			"url":"md:logo"
+		}
+	},
+	"description":"md:description"
+}

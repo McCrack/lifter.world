@@ -1,0 +1,20 @@
+{
+	"en":{
+		"create wordlist":"Create wordlist",
+		"save wordlist":"Save wordlist",
+		"remove wordlist":"Remove wordlist",
+		"add language":"Add language"
+	},
+	"ru":{
+		"create wordlist":"Создать словарь",
+		"save wordlist":"Сохранить словарь",
+		"remove wordlist":"Удалить словарь",
+		"add language":"Добавить язык"
+	},
+	"uk":{
+		"create wordlist":"Створити словник",
+		"save wordlist":"Зберегти словник",
+		"remove wordlist":"Видалити словник",
+		"add language":"Додати мову"
+	}
+}

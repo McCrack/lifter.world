@@ -1,0 +1,177 @@
+<!doctype html>
+	<html amp lang="<?=$page->language?>" prefix="op: http://media.facebook.com/op#">
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+
+	<?if(ADS):?>
+	<script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
+	<?endif?>
+
+	<title><?=$page->title?></title>
+	<meta name="description" content="<?=$page->description?>">
+	<link rel="canonical" href="<?=$page->canonical?>">
+
+	<meta name="theme-color" content="#121416">
+
+	<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+	<style amp-custom>
+	<?$types = ["otf"=>"opentype","ttf"=>"truetype","woff"=>"woff"];
+	foreach(array_map("pathinfo", glob("fonts/*.{otf,ttf,woff}", GLOB_BRACE)) as $file):?>
+	@font-face{
+		font-family:'<?=str_replace("-", " ", $file['filename'])?>';
+		src:url(/<?=($file['dirname']."/".$file['basename'])?>) format('<?=$types[$file['extension']]?>');
+	}
+	<?endforeach?>
+	body{
+		margin:0;
+		background-color:#0A0A0A;
+	}
+	a{
+		color:#058;
+		text-decoration:none;
+	}
+	#cover{
+		z-index:2;
+		position:relative;
+		font:68px bravo;
+		background-color:black;
+		border-bottom:1px solid #555;
+		box-shadow:0 10px 5px -8px rgba(0,0,0, .6);
+	}
+	#author{
+		color:#278;
+		padding:2px;
+		position:relative;
+		font:italic 15px tinos;
+	}
+	#author::before{
+		content:"";
+		left:0;
+		bottom:0;
+		width:42%;
+		height:2px;
+		display:block;
+		position:absolute;
+		background-color:#578;
+	}
+	time{
+		color:#345;
+		float:right;
+		font:bold 15px/1.5 Oswald;
+	}
+	article{
+		color:#222;
+		padding:0 24px;
+		margin:0 auto;
+		max-width:640px;
+		font:18px "open sans";
+		box-sizing:border-box;
+		background-color:white;
+		box-shadow:0 0 5px -3px rgba(0,0,0,.5);
+	}
+	article>header>h1{
+		margin:10px 0;
+		font:bold 32px/1 Oswald;
+	}
+	article>header>h2{
+		color:#555;
+		margin:10px 0;
+		font:normal 26px Oswald;
+	}
+	article>header>h1:first-letter{
+		color:#D94;
+	}
+	article>h2{
+		font:bold 22px "open sans";
+	}
+	article p{
+		margin:20px 0;
+	}
+	figure{
+		margin:0 -24px 20px -24px;
+	}
+	figure>img{
+		width:100%;
+	}
+	figcaption,figcaption>a{
+		color:#789;
+		font:15px Oswald;
+		text-align:center;
+	}
+	blockquote{
+		margin:0;
+		font-style:italic;
+		padding:0 10px 0 50px;
+		background:url(/images/quotes.jpg) 10px 10px no-repeat;
+	}
+	ul,ol{
+		padding-left:4vw;
+	}
+	li{
+		margin:8px 0;
+		font-size:16px;
+	}
+	</style>
+
+	
+	<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+	
+	<?if(ADS):?>
+	<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+	<?endif?>
+	<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+	<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
+	<script async src="https://cdn.ampproject.org/v0.js"></script>
+
+	<?foreach($page->schemes as $schema):?>
+	<script type="application/ld+json"><?=stripcslashes(JSON::encode($schema))?></script>
+	<?endforeach?>
+	</head>
+	<body>
+		<amp-analytics type="googleanalytics">
+			<script type="application/json">
+			{
+				"vars":{
+					"account":"UA-117262486-2"
+				},
+				"triggers":{
+					"trackPageview":{
+					"on":"visible",
+					"request":"pageview",
+					"vars":{
+						"title":"<?=$page->title?>"
+					}
+				}
+			}
+		}
+		</script>
+		</amp-analytics>
+		<?if(ADS):?>
+		<amp-auto-ads type="adsense" data-ad-client="<?=$config->{'google:ad_client'}?>"></amp-auto-ads>
+		<?endif?>
+		<div id="cover" align="center">
+			<a href="/">LIFTER.</a>
+		</div>
+		<article>
+			<header>
+				<figure>
+					<amp-img src="<?=$page->preview?>" alt="<?=$page->header?>" width="640" height="336" layout="responsive"></amp-img>
+				</figure>
+				<h1><?=$page->header?></h1>
+				<h2><?=$page->subheader?></h2>
+			</header>
+			<?=$page->getContent()?>
+			<br><br>
+			<?if(ADS):?>
+      		<amp-ad width=300 height=250 type="adsense" data-ad-client="<?=$config->{'google:ad_client'}?>" data-ad-slot="8018730714"> </amp-ad>
+			<amp-ad width=300 height=250 type="doubleclick" data-slot="/45470634/300x250_AMP_lifter.com.ua"></amp-ad>
+			<?endif?>
+			<br>
+			<footer>
+				<time dateTime="<?=$page->Created_ISO_8601?>"><?=date("d M, Y", $page->created)?></time>
+				<span id="author"><?=$page->author?></span>
+			</footer>
+		</article>
+	</body>
+</html>

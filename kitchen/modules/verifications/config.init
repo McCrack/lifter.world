@@ -1,0 +1,1 @@
+{"status":{"type":"enum","value":"disabled","valid":["enabled","disabled"]},"access":{"type":"set","value":"admin, developer","valid":["admin","developer","editor","manager","author","designer","partner","performer"]},"mode":{"type":"enum","value":"pag","valid":["pag","box"]}}

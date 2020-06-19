@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="<?=USER_LANG?>" prefix="og: https://ogp.me/ns#">
+<head>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117262486-2"></script>
+
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'UA-117262486-2');
+	</script>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	
+	<title><?=$page->title?></title>
+	<meta name="description" content="<?=$page->description?>">
+
+	<meta name="theme-color" content="#111111">
+	<!-- ~~~ Favicon Iconset ~~~ -->
+	<!--
+	<link rel="icon" type="image/png" sizes="32x32" href="/themes/<?=THEME?>/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/themes/<?=THEME?>/images/favicon-16x16.png">
+	<link rel="mask-icon" href="/themes/<?=THEME?>/images/safari-pinned-tab.svg" color="#000000">
+	<meta name="msapplication-TileColor" content="#000000">
+	<meta name="msapplication-TileImage" content="/themes/<?=THEME?>/images/mstile-144x144.png">
+	<link rel="apple-touch-icon" href="/themes/<?=THEME?>/images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" href="/themes/<?=THEME?>/images/apple-touch-icon-60x60.png" sizes="60x60">
+	<link rel="apple-touch-icon" href="/themes/<?=THEME?>/images/apple-touch-icon-72x72.png" sizes="72x72">
+	<link rel="apple-touch-icon" href="/themes/<?=THEME?>/images/apple-touch-icon-76x76.png" sizes="76x76">
+	<link rel="apple-touch-icon" href="/themes/<?=THEME?>/images/apple-touch-icon-114x114.png" sizes="114x114">
+	<link rel="apple-touch-icon" href="/themes/<?=THEME?>/images/apple-touch-icon-120x120.png" sizes="120x120">
+	<link rel="apple-touch-icon" href="/themes/<?=THEME?>/images/apple-touch-icon-144x144.png" sizes="144x144">
+	<link rel="apple-touch-icon" href="/themes/<?=THEME?>/images/apple-touch-icon-152x152.png" sizes="152x152">
+	<link rel="apple-touch-icon" href="/themes/<?=THEME?>/images/apple-touch-icon-180x180.png" sizes="180x180">
+	<link rel="icon" type="image/png" sizes="32x32" href="/themes/<?=THEME?>/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/themes/<?=THEME?>/images/favicon-16x16.png">
+	-->
+	<!-- end favicon icon set -->
+
+	<link rel="icon" type="image/png" href="/themes/<?=THEME?>/images/favicon.png">
+
+	<link rel="manifest" href="/manifest.json">
+	<meta name="msapplication-config" content="/browserconfig.xml">
+  
+	<?foreach($page->languageset as $lang=>$lnk):?>
+    <link hreflang="<?=$lang?>" href="<?=$lnk?>" rel="alternate">
+    <?endforeach?>
+    <link hreflang="x-default" href="<?=$page->x_default?>" rel="alternate">
+    
+    <link rel="canonical" href="<?=$page->canonical?>">
+    <link rel="amphtml" href="<?=($page->root.'/amp/'.$page->name)?>">
+
+	<meta property="fb:pages" content="<?=$config->{'fb:pages'}?>">
+	<meta property="fb:app_id" content="<?=$config->{'fb:app_id'}?>">
+
+	<meta property="og:url" content="<?=$page->canonical?>">
+	<meta property="og:title" content="<?=$page->header?>">
+	<meta property="og:type" content="website">
+	<meta property="og:description" content="<?=$page->description?>">
+
+	<meta property="og:site_name" content="<?=$page->SiteName?>">
+	
+	<?php
+	$cover_url = parse_url($page->preview);
+	$preview = getimagesize("../img".$cover_url['path'])
+	?>
+	<meta property="og:image" content="<?=$page->preview?>">
+	<meta property="og:image:type" content="<?=$preview['mime']?>">
+	<meta property="og:image:height" content="<?=$preview[1]?>">
+	<meta property="og:image:width" content="<?=$preview[0]?>">
+	
+	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet"> 
+
+	<style>
+	<?$types = ["otf"=>"opentype","ttf"=>"truetype","woff"=>"woff"];
+	foreach(array_map("pathinfo", glob("fonts/*.{otf,ttf,woff}", GLOB_BRACE)) as $file):?>
+    @font-face{
+        font-family:'<?=str_replace("-", " ", $file['filename'])?>';
+        src:url(/<?=($file['dirname']."/".$file['basename'])?>) format('<?=$types[$file['extension']]?>');
+    }
+    <?endforeach?>
+    </style>
+	<style>
+	@import "/themes/<?=THEME?>/styles/index.css";
+	@import "/themes/<?=THEME?>/styles/feed.css";
+	@import "/themes/<?=THEME?>/styles/content.css";
+	<?if(MOBILE):?>
+	@import "/themes/<?=THEME?>/styles/mobile.css";
+	<?else:?>
+	@import "/themes/<?=THEME?>/styles/desktop.css";
+	<?endif?>
+	</style>
+	
+	<?if(ADS):?>
+		<!--
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({
+			google_ad_client:"<?=$config->{'google:ad_client'}?>",
+			enable_page_level_ads: true
+		});
+		</script>
+		-->
+
+		<script async type='text/javascript' src='//s.clickiocdn.com/t/common_258.js'></script>
+		<script class='__lxGc__' type='text/javascript'>
+		<?if(DESKTOP):?>
+		((__lxGc__=window.__lxGc__||{'s':{},'b':0})['s']['_215185']=__lxGc__['s']['_215185']||{'b':{}})['b']['_632394']={'i':__lxGc__.b++};
+		<?else:?>
+		((__lxGc__=window.__lxGc__||{'s':{},'b':0})['s']['_215185']=__lxGc__['s']['_215185']||{'b':{}})['b']['_632398']={'i':__lxGc__.b++};
+		<?endif?>
+		</script>
+	<?endif?>
+	<script src="/js/C-Lab.js"></script>
+	<script>
+	var PAGEID = "<?=PAGE_ID?>";
+	var LANGUAGE = "<?=USER_LANG?>";
+	new function(){
+		var analytics = this;
+		analytics.XHR = new XMLHttpRequest();
+		var params = { PageID:PAGEID, input:Date.now() }
+		window.onbeforeunload = function(){
+			params['output'] = Date.now();
+			analytics.XHR.open("POST", "/ajax/analytics/"+(session.open() ? 1 : 0), false);
+			analytics.XHR.setRequestHeader("Content-Type", "application/json");
+			analytics.XHR.send(JSON.stringify(params));
+		}
+	}
+	</script>
+	
+	<script src="/themes/<?=THEME?>/scripts/main.js" defer></script>
+	<script src="/ajax/wordlist/<?=USER_LANG?>?d[0]=main&d[1]=keywords" charset="utf-8" defer onload=""></script>
+
+	<script async id="__lxGc__rtr" src="//s.clickiocdn.com/t/215185/360.js"></script>
+	<script async src="//s.clickiocdn.com/t/common_258.js"></script>
+	
+	<script type="text/javascript" defer src="//assets.pinterest.com/js/pinit.js"></script>
+	<script defer id="facebook-jssdk" src="//connect.facebook.net/ru_RU/sdk.js" onload="
+	window.fbAsyncInit = FB.init({
+		appId:<?=$config->{'fb:app_id'}?>,
+		xfbml:true,
+		cookie:true,
+		status:true,
+		version:'v2.9'
+	})"></script>
+
+	<?foreach($page->schemes as $schema):?>
+	<script type="application/ld+json"><?=stripcslashes(JSON::encode($schema))?></script>
+	<?endforeach?>
+</head>
+<body class="silver-bg">
+	<div id="fb-root"></div>
+	<div id="substrate"></div>
+	<section id="loft">
+		<div id="topbar" class="topbar social-btns" align="center">
+			<nav>
+				<?for($i=8; $i--;):?>
+				<a href="<?=LANG_INDEX?>/<?=$keywords[$i]?>"><?=$wordlist->{$keywords[$i]}?></a>
+				<?endfor?>
+			</nav>
+			<a rel="nofolow" target="_blank" href="https://facebook.com/liftercomua">&#xf101;</a>
+			<a rel="nofolow" target="_blank" href="https://www.instagram.com/ua_lifter/">&#xf106;</a>
+			<a rel="nofolow" target="_blank" href="http://chats.viber.com/lifterua">&#xf113;</a>
+		</div>
+		<div id="cover" class="black-bg"><a href="/">LIFTER.</a></div>
+		<div class="topbar">
+			<div id="postbar">
+				<nav>
+				<?foreach($tags as $keyword):?>
+					<a href="<?=LANG_INDEX?>/<?=$keyword?>"><?=$wordlist->{$keyword}?></a>
+				<?endforeach?>
+				</nav>
+				<time dateTime="<?=$page->Created_ISO_8601?>"><?=date("d M, Y", $page->created)?></time>
+			</div>
+		</div>
+	</section>
+	<main>
+	<?include_once("themes/".THEME."/includes/default.html")?>
+	</main>
+	<?if(ADS && DESKTOP):?>
+	<div align="center">
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<ins class="adsbygoogle"
+     		style="display:block"
+     		data-ad-format="autorelaxed"
+     		data-ad-client="ca-pub-9935373660576595"
+     		data-ad-slot="7170681309"></ins>
+		<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+	</div>
+	<br>
+	<?endif?>
+	<section id="subfeed">
+		<div class="next-page grid">
+		<?php
+		$feed = $mySQL->get("
+		SELECT * FROM gb_blogfeed
+		CROSS JOIN gb_pages USING(PageID) 
+		WHERE
+			language LIKE {str}
+			AND published & 2
+			AND created<{int}
+		ORDER BY created DESC
+		LIMIT 19", USER_LANG,$page->created);
+		
+		if(ADS):?>
+			<!--
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<ins class="adsbygoogle"
+     		style="display:block"
+     		data-ad-format="fluid"
+     		data-ad-layout-key="-7i+eq+28-5k+1i"
+     		data-ad-client="<?=$config->{'google:ad_client'}?>"
+     		data-ad-slot="6787817161"></ins>
+			<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+			-->
+			<div class="adsense-580x400" align="center">
+				<script type="text/javascript">
+				google_ad_client = "<?=$config->{'google:ad_client'}?>";
+				<?if(DESKTOP):?>
+					google_ad_slot = "2944095488";
+					google_ad_width = 580;
+					google_ad_height = 400;
+				<?else:?>
+					google_ad_slot = "5995379209";
+					google_ad_width = 300;
+					google_ad_height = 250;
+				<?endif?>
+				</script>
+				<!-- 580х400onlymedia -->
+				<script type="text/javascript" src="//pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+			</div>
+			<?if(ADS && MOBILE):?>
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<ins class="adsbygoogle"
+     			style="display:block"
+     			data-ad-format="autorelaxed"
+     			data-ad-client="ca-pub-9935373660576595"
+     			data-ad-slot="7170681309"></ins>
+			<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+			<?endif?>
+		<?endif?>
+		<?for($i=6; $i--;): $snippet = array_shift($feed)?>
+			<a href="/<?=(translite($snippet['header']).'-'.$snippet['PageID'])?>">
+				<div class="snippet">
+					<div class="preview"><img src="<?=$snippet['preview']?>" alt="<?=$snippet['header']?>"></div>
+					<div class="caption"><span><?=$snippet['header']?></span></div>
+					<br>
+				</div>
+			</a>
+		<?endfor?>
+		<?if(ADS):?>
+			<div class="adsense-580x400" align="center">
+				<script type="text/javascript">
+				google_ad_client = "<?=$config->{'google:ad_client'}?>";
+				<?if(DESKTOP):?>
+					google_ad_slot = "2369380411";
+					google_ad_width = 580;
+					google_ad_height = 400;
+				<?else:?>
+					google_ad_slot = "1225434108";
+					google_ad_width = 300;
+					google_ad_height = 250;
+				<?endif?>
+				</script>
+				<!-- 580х400onlymedia -->
+				<script type="text/javascript" src="//pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+			</div>
+		<?endif?>
+		<?foreach($feed as $snippet):?>
+			<a href="/<?=(translite($snippet['header']).'-'.$snippet['PageID'])?>">
+				<div class="snippet">
+					<div class="preview"><img src="<?=$snippet['preview']?>" alt="<?=$snippet['header']?>"></div>
+					<div class="caption"><span><?=$snippet['header']?></span></div>
+					<br>
+				</div>
+			</a>
+		<?endforeach?>
+		</div>
+	</section>
+	<section class="black-bg">
+		<br>
+		<div id="more-btn">
+			MORE STORIES
+			<script>
+			var OFFSET = 20;
+			(function(btn){
+				btn.onclick=function(){
+					XHR.push({
+						addressee:"/ajax/feed/"+OFFSET,
+						onsuccess:function(response){
+							var feed = document.querySelector("#subfeed");
+							//CHRONICLE -= 86400;
+							OFFSET += 20;
+							var fragment = document.fragment(response);
+							feed.appendChild(fragment);
+						}
+					});
+				}				
+			})(document.currentScript.parentNode);
+			</script>
+		</div>
+		<br>
+		<?if(ADS):?>
+		<div class="adsense-980x120" align="center">
+			<div class="adsense-970x90" align="center">
+				<script type="text/javascript">
+				google_ad_client = "<?=$config->{'google:ad_client'}?>";
+				<?if(DESKTOP):?>
+					google_ad_slot = "2836284276";
+					google_ad_width = 980;
+					google_ad_height = 120;
+				<?else:?>
+			 		google_ad_slot = "5159195285";
+	    			google_ad_width = 300;
+				    google_ad_height = 250;
+				<?endif?>
+				</script>
+				<!-- 980х120-world -->
+				<script type="text/javascript" src="//pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+			</div>
+		</div>
+		<br>
+		<?endif?>
+	</section>
+	<div id="copyright" class="topbar" align="center">© <?=$page->SiteName?> | <?=date("Y")?> </div>
+	<section id="footer" class="rainbow">
+		<nav id="footer-keywords">
+			<?foreach($keywords as $keyword):?>
+			<a href="<?=LANG_INDEX?>/<?=$keyword?>"><?=$wordlist->{$keyword}?></a>
+			<?endforeach?>
+		</nav>
+		<nav id="we-in-social" class="social-btns">
+			<a rel="nofolow" target="_blank" href="https://facebook.com/liftercomua">&#xf101; Facebook</a>
+			<a rel="nofolow" target="_blank" href="https://www.instagram.com/ua_lifter/">&#xf106; Instagram</a>
+			<a rel="nofolow" target="_blank" href="http://chats.viber.com/lifterua">&#xf113; Viber</a>
+		</nav>
+		<nav id="service-pages">
+			<a href="#" onclick="if(window.__lxG__consent__ !== undefined) {window.__lxG__consent__.showConsent()} else {alert('This function works only for users from the European Economic Area (EEA).')}; return false">Change privacy settings</a>
+			<?foreach($map['static'] as $category):?>
+			<a href="<?=LANG_INDEX?>/<?=$category['name']?>"><?=$category['header']?></a>
+			<?endforeach?>
+		</nav>
+	</section>
+</body>
+</html>

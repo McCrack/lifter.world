@@ -1,0 +1,125 @@
+#wrapper>header>a.tool{
+	color:#DDD;
+	padding:0 5px;
+	font-size:15px;
+	line-height:36px;
+	margin-left:-10px;
+	display:inline-block;
+	vertical-align:middle;
+	background-color:#111;
+	border-right:1px solid #555;
+}
+#wrapper>header>a.tool:hover{
+	color:white;
+	border-color:white;
+	background-color:#008DD0;
+}
+#tile{
+	padding:10px;
+	display:grid;
+	grid-gap:10px;
+	grid-template-columns:repeat(auto-fill, minmax(260px, min-content));
+}
+#tile>a.snippet{
+	background-color:white;
+	box-shadow:10px 10px 5px -8px rgba(0,0,0, .5);
+}
+#tile>a.snippet>div.header{
+	color:#444;
+	font-size:15px;
+}
+#code>xmp{
+	margin:0;
+	width:100%;
+	height:calc(100% - 36px);
+}
+#sitemap .select{margin:5px 0}
+#sitemap .select>select{font-size:16px}
+#sitemap a.root-itm::before{
+	content:"↳";
+	margin:0 4px;
+	color:#00ADF0;
+	font-family:EmojiSymbols, tools;
+}
+#sitemap a.published-txt{color:#C94}
+#sitemap a>label{
+	color:#777;
+	cursor:pointer;
+	font-size:0;
+	display:inline-block;
+	transform:rotate(90deg);
+}
+#sitemap a:hover>label{font-size:12px}
+#sitemap a>label:hover{color:white}
+#wrapper>main{font-size:0}
+
+form#metadata>div.grid{
+	font-size:14px;
+	padding:10px 4px;
+	display:grid;
+	grid-row-gap:5px;
+	grid-template-columns:auto 140px 110px;
+}
+form#metadata fieldset{
+	padding:0 4px;
+	border-width:0;
+}
+form#metadata input:not([type='checkbox']){
+	width:100%;
+	height:30px;
+	padding:6px;
+	border-width:0;
+	box-sizing:border-box;
+}
+form#metadata input:not([type='checkbox']),
+form#metadata textarea,
+form#metadata fieldset>div.select{
+	box-shadow:inset 0 0 6px 0 rgba(0,0,0, .6);
+	background-image:linear-gradient(to top, #FFF, #F0F0F0);
+}
+form#metadata fieldset>div.select{width:100%}
+
+form#metadata fieldset>div.select>select{
+	width:100%;
+	height:30px;
+}
+form#metadata textarea{
+	resize:none;
+	width:100%;
+	height:100px;
+	padding:10px;
+	border-width:0;
+	box-sizing:border-box;
+}
+#cover{
+	overflow:hidden;
+	position:relative;
+	padding-bottom:56.25%;
+}
+#cover>img,
+#cover>iframe{
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	position:absolute;
+}
+#cover>img{
+	object-fit:cover;
+	transition:top .5s;
+	box-shadow:0 12px 6px -8px rgba(0,0,0, .8);
+}
+#cover:hover>img{
+	top:-100%;
+}
+#codefullscreen:checked+input+div label.screenmode-btn::before{
+	color:#00ADF0;
+	content:"\e5d1";
+}
+#codefullscreen:checked+input+div{
+	top:0;
+	left:0;
+	height:100%;
+	min-width:100%;
+	position:fixed;
+}

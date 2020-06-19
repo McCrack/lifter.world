@@ -1,0 +1,251 @@
+body{
+	overflow:hidden;
+}
+#wrapper{
+	display:grid;
+	grid-template-columns:auto auto 1fr;
+}
+#wrapper>nav{
+	z-index:5;
+	height:100vh;
+	position:relative;
+	background-color:black;
+}
+#wrapper>aside{
+	width:48vw;
+	height:100vh;
+	position:relative;
+	background-color:#20CDFF;
+	box-shadow:10px 0 4px -10px rgba(0,0,0, .5);
+	display:grid;
+	grid-gap:1px;
+	grid-template-columns:100px auto;
+}
+#wrapper>main{
+	height:100vh;
+	overflow-y:auto;
+	overflow-x:hidden;
+	position:relative;
+}
+
+/**************************************/
+
+#wrapper>aside>section{
+	background-color:#00ADF0;
+}
+section#loft{
+	height:100vh;
+}
+section#main{
+	width:100%;
+	font-size:0;
+	overflow:auto;
+	position:relative;
+}
+section#main>img{
+	width:100%;
+	position:absolute;
+	object-fit:scale-down;
+	height:calc(100% - 100px);
+}
+section#main>#feed{
+	min-height:calc(100% - 102px);
+	transition:background-color .5s;
+}
+#feed.visible{
+	background-color:white;
+}
+section#main>footer{
+	height:88px;
+	border-top:1px solid #20CDFF;
+}
+
+/**************************************/
+
+#loft>label{
+	z-index:5;
+	width:100%;
+	height:100px;
+	cursor:pointer;
+	position:relative;
+	display:inline-block;
+	background-color:inherit;
+	border-bottom:1px solid #20CDFF;
+	transition:background-color .5s;
+}
+
+#loft>label::after{
+	float:left;
+	width:100%;
+	color:#4DF;
+	opacity:0.0;
+	display:block;
+	margin-top:-25px;
+	text-align:center;
+	font:14px calibri;
+	transition:opacity .3s;
+	content:attr(data-ttl);
+}
+#loft>label:hover::after{
+	opacity:1.0;
+}
+
+/* SHOWER ****************************/
+
+input~#wrapper>nav{
+	width:0;
+	overflow:hidden;
+	transition:width .5s;
+}
+input~#substrate{
+	top:0;
+	left:0;
+	z-index:4;
+	position:fixed;
+	background-color:transparent;
+	transition:background-color 1s;
+}
+input:checked~#substrate{
+	width:100%;
+	height:100%;
+	background-color:rgba(255,255,255, .6);
+}
+input:checked~#wrapper>nav{
+	width:300px;
+}
+#wrapper>nav>section{
+	display:none;
+}
+#menu-shower:checked~#wrapper>nav>section#main-menu,
+#keywords-shower:checked~#wrapper>nav>section#keywords{
+	display:flex;
+}
+#menu-shower-btn::before,
+#keywords-shower-btn::before{
+	color:#EEE;
+	width:100%;
+	height:100%;
+	cursor:pointer;
+	position:relative;
+	line-height:100px;
+	text-align:center;
+	display:inline-block;
+	transition:transform .4s;
+}
+#menu-shower:checked~#wrapper #menu-shower-btn,
+#keywords-shower:checked~#wrapper #keywords-shower-btn{
+	background-color:black;
+}
+#menu-shower-btn::before{
+	content:"☰";
+	font-size:64px;
+}
+#keywords-shower-btn::before{
+	content:"⌘";
+	font-size:56px;
+}
+#menu-shower:checked~#wrapper #menu-shower-btn::before,
+#keywords-shower:checked~#wrapper #keywords-shower-btn::before{
+	content:"✕";
+	font-size:64px;
+	transform:rotate(90deg);
+}
+
+/*************************************/
+
+#wrapper>main>article{
+	margin:0 auto;
+	max-width:800px;
+	padding:10px 5vw;
+}
+@media (max-width:1360px){
+	main>article{min-width:500px}
+}
+@media (min-width:1361px){
+	main>article{min-width:600px}
+}
+
+/* BREAD CRUMBS **********************/
+
+#breadcrumbs{
+	margin-left:-4vw;
+}
+#breadcrumbs>a{
+	font-size:15px;
+}
+
+/*************************************/
+
+#wrapper>main>article>header,
+#wrapper>main>article>figure,
+#wrapper>main>article>.mediaset{
+	margin:0 -30px;
+}
+
+/*************************************/
+
+#feed>div{
+	max-height:0;
+	overflow:hidden;  
+	padding-left:20px;
+	transition:max-height .4s;
+}
+#feed.visible>div{
+	padding-top:10px;
+	max-height:200vh;
+	transition:max-height .4s linear .6s;
+}
+
+/*************************************/
+
+.snippet{
+	margin:10px 0;
+	position:relative;
+	padding-bottom:56.25%;
+}
+.snippet>img,
+.snippet>video{
+	top:0;
+	left:0;
+	width:82%;
+	height:100%;
+	position:absolute;
+}
+.snippet>div.caption{
+	z-index:2;
+	left:14%;
+	bottom:8px;
+	position:absolute;
+}
+.snippet>div.caption::first-letter{
+	color:gold;
+	font-weight:bold;
+}
+.snippet>div.caption::first-line{
+	font-size:22px;
+}
+.snippet>div.caption>span{
+	color:white;
+	background-color:black;
+	box-shadow:8px 8px 4px -6px rgba(0,0,0, .5);
+}
+.snippet>div.date{
+	z-index:2;
+	top:-3px;
+	left:-3px;
+	color:#FFF;
+	padding:0 5px;
+	line-height:22px;
+	position:absolute;
+	background-color:#00ADF0;
+}
+.snippet:hover>div.caption>span{
+	color:black;
+	background-color:white;
+}
+.snippet:hover>div.caption::first-letter{
+	color:#00ADF0;
+}
+.snippet:hover>div.date{
+	background-color:gold;
+}

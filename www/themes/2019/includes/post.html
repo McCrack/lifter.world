@@ -1,0 +1,190 @@
+<aside>
+	<section id="loft">
+		<label id="menu-shower-btn" for="menu-shower" data-ttl="MENU"></label>
+		<?if(MOBILE):?>
+		<a href="<?=LANG_INDEX?>/"><img id="logo" src="/themes/<?=THEME?>/images/logo-sparrow.png" alt="HOBO"></a>
+		<?endif?>
+		<label id="keywords-shower-btn" for="keywords-shower" data-ttl="KEYWORDS"></label>
+		<script>
+		(function(bar){
+			bar.querySelectorAll("label").forEach(function(btn){
+				btn.onclick=function(event){
+					event.preventDefault();
+					btn.control.checked = !btn.control.checked;
+				}
+			});
+		})(document.currentScript.parentNode);
+		</script>
+	</section>
+	<?if(DESKTOP):?>
+	<section id="main">
+		<!--<img id="logo" src="/themes/<?=THEME?>/images/logo-sparrow.png" alt="HOBO">-->
+		<h1 style="font-size:15vw;color:white;margin:0;line-height:95vh" align="center">Li</h1>
+		<section id="feed">
+			<?include_once("themes/".THEME."/includes/blog/".SUBTEMPLATE.".html")?>
+			<script>var FEED=document.currentScript.parentNode</script>
+		</section>
+		<footer>
+			<a class="icons title" data-translate="title" target="_blank" title="follow us on pinterest" href="https://www.pinterest.com/hobo_bilion_top/">
+				<svg aria-labelledby="simpleicons-pinterest-icon" role="img" viewBox="-5 -5 34 34" xmlns="http://www.w3.org/2000/svg">
+					<path fill="#3DFF" d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/>
+				</svg>
+			</a>
+			<a class="icons title" data-translate="title" target="_blank" title="follow us on facebook" href="https://www.facebook.com/bilion.top"></a>
+    	</footer>
+	</section>
+    <?endif?>
+</aside>
+<main>
+	<article class="light">
+		<nav id="breadcrumbs">
+		<?foreach($breadcrumb['itemListElement'] as $item):?>
+			<a href="<?=$item['item']['id']?>"><?=$item['item']['name']?></a>
+		<?endforeach?>
+		</nav>
+		<br><br>
+		<header>
+			<h1><?=$page['header']?></h1><br>
+			<h2><?=$page['subheader']?></h2>
+			<br><br>
+			<time><?=date("d M, H:i", $page['created'])?></time>
+			<nav>
+			<?$keywords = $mySQL->getGroup("SELECT KeyWORD FROM blog_vs_keywords CROSS JOIN gb_keywords USING(KeyID) WHERE PageID={int}", PAGE_ID)['KeyWORD'];
+			foreach($keywords as $keyword):?>
+				<a href="<?=LANG_INDEX?>/<?=$page['category']?>/<?=$keyword?>"><?=$wordlist->{$keyword}?></a>
+			<?endforeach?>
+			</nav>
+		</header>
+		<section class="mediaset">
+			<div class="slideshow">
+				<?$imgset = $mySQL->getRow("SELECT Mediaset FROM gb_media WHERE SetID={int} LIMIT 1", $page['SetID'])['Mediaset'];
+				$imgset = JSON::parse($imgset);
+				$cnt = count($imgset)-1?>
+				<figure>
+					<img src="<?=$imgset[$cnt]['url']?>" alt="<?=$imgset[$cnt]['alt']?>">
+					<figcaption class="<?=$imgset[$cnt]['position']?> <?=$imgset[$cnt]['color']?>"><span><?=$imgset[$cnt]['description']?></span></figcaption>
+				</figure>
+				<?foreach($imgset as $img):?>
+				<figure>
+					<img src="<?=$img['url']?>" alt="<?=$img['alt']?>" title="<?=$img['key']?>">
+					<figcaption class="<?=$img['position']?> <?=$img['color']?>"><span><?=$img['description']?></span></figcaption>
+				</figure>
+				<?endforeach?>
+				<figure>
+					<img src="<?=$imgset[0]['url']?>" alt="<?=$imgset[0]['alt']?>">
+					<figcaption class="<?=$imgset[0]['position']?> <?=$imgset[0]['color']?>"><span><?=$imgset[0]['description']?></span></figcaption>
+				</figure>
+			</div>
+			<script>
+			(function(imgset){
+				var animate,
+					current = 1,
+					slider = imgset.querySelector(".slideshow");
+					imgset.onclick=function(event){
+						var offset = event.clientX - (imgset.getBoundingClientRect().left>>0) + 80,
+							last = (slider.scrollWidth / slider.offsetWidth)>>0,
+							dir = (offset>imgset.offsetWidth) ? 1 : (offset>(imgset.offsetWidth-40)) ? -1  : 0;
+
+						current = (slider.scrollLeft / slider.offsetWidth)>>0;
+						if((current+dir) > ( last - 1)){
+							current = slider.scrollLeft = 0;
+						}else if((current+dir)<1){
+							current = last - 1;
+							slider.scrollLeft = slider.scrollWidth - slider.offsetWidth;
+						}
+						slideShot(slider.offsetWidth * (dir+current));
+					}
+					var slideShot = function(offset){
+						cancelAnimationFrame(animate);
+						animate = requestAnimationFrame(function scrollSlide(){
+							if(Math.abs(offset - slider.scrollLeft) > 16){
+								slider.scrollLeft += (offset - slider.scrollLeft)/8;
+								animate = requestAnimationFrame(scrollSlide);
+							}else slider.scrollLeft = offset;
+						});
+					}
+					slideShot(slider.offsetWidth);
+			})(document.currentScript.parentNode);
+			</script>
+		</section>
+		<?=gzdecode($page['content'])?>
+		<address class="title" title="author" data-translate="title"><?=$author?></address>
+		<div class="fb-save"></div>
+		<br><br>
+		<form class="rating self-rating" title="your score" data-translate="title" autocomplete="off">
+			<input id="score-5" type="radio" name="rating" value="5" hidden>
+			<label for="score-5" title="5" class="title">★</label>
+
+			<input id="score-4" type="radio" name="rating" value="4" hidden>
+			<label for="score-4" title="4" class="title">★</label>
+
+			<input id="score-3" type="radio" name="rating" value="3" hidden>
+			<label for="score-3" title="3" class="title">★</label>
+			
+			<input id="score-2" type="radio" name="rating" value="2" hidden>
+			<label for="score-2" title="2" class="title">★</label>
+			
+			<input id="score-1" type="radio" name="rating" value="1" hidden>
+			<label for="score-1" title="1" class="title">★</label>
+			<script>
+			(function(form){
+				if(window.localStorage && window.localStorage[<?=PAGE_ID?>]){
+					var rating = form.rating.value = window.localStorage[<?=PAGE_ID?>];
+				}else var rating = 0;
+				form.onchange=function(){
+					XHR.push({
+						addressee:"/ajax/analytics/like/<?=PAGE_ID?>/"+form.rating.value+"/"+rating,
+						onsuccess:function(response){
+							rating = form.rating.value;
+							if(window.localStorage) window.localStorage.setItem(<?=PAGE_ID?>, form.rating.value);
+						}
+					});
+				}
+			})(document.currentScript.parentNode)
+			</script>
+		</form><br>
+		<?$rating = @($page['rating']/$page['votes'])>>0?>
+		<div title="total score" data-translate="title" class="rating title">
+		<?for($i=5; $i--;):?>
+			<input type="radio" autocomplete="off" hidden <?if(($i+1)==$rating):?>checked<?endif?> name="total-rating"><label>★</label>
+		<?endfor?>
+		</div>
+		<hr>
+		<div id="share-btns" title="<?=$wordlist->share?>:">
+			<span title="Pinterest" class="icons title"><a data-pin-do="buttonBookmark" data-pin-tall="true" data-pin-round="true" href="https://www.pinterest.com/pin/create/button/"></a></span>
+			<span title="Facebook" class="facebook icons title" onclick="share.facebook()"></span>
+			<span title="Facebook messenger" class="messenger icons title" onclick="send.messenger()"></span>
+			<a title="Viver" class="viber icons title" href="viber://forward?text=<?=$canonical?>"></a>
+			<a title="Telegram" class="telegram icons title" href="tg://msg?url=<?=$canonical?>"></a>
+		</div>
+		<br><br>
+	</article>
+	<script>
+	(function(article){
+		article.onscroll=function(){
+			if(article.scrollTop>500){
+				FEED.classList.toggle("visible", true);
+			}else FEED.classList.toggle("visible", false);
+		}
+		function showFeed(snippets){
+			setTimeout(function(){
+				snippets.pop().classList.toggle("visible", true);
+				if(snippets.length) showFeed(snippets)
+			},100);
+		}
+	})(document.currentScript.parentNode);
+	</script>
+</main>
+<?if(MOBILE):?>
+<section id="feed">
+	<?include_once("themes/".THEME."/includes/blog/".SUBTEMPLATE.".html")?>
+</section>
+<footer>
+	<a class="icons title" data-translate="title" target="_blank" title="follow us on pinterest" href="https://www.pinterest.com/hobo_bilion_top/">
+		<svg aria-labelledby="simpleicons-pinterest-icon" role="img" viewBox="-5 -5 34 34" xmlns="http://www.w3.org/2000/svg">
+			<path fill="#3DFF" d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/>
+		</svg>
+	</a>
+	<a class="icons title" data-translate="title" target="_blank" title="follow us on facebook" href="https://www.facebook.com/bilion.top"></a>
+</footer>
+<?endif?>

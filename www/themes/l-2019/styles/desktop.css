@@ -1,0 +1,207 @@
+body{
+	overflow:hidden;
+}
+#wrapper{
+	display:grid;
+	grid-gap:10px;
+	grid-template-columns:auto 1fr;
+}
+#wrapper>aside{
+	font-size:0;
+	height:100vh;
+	box-shadow:10px 0 5px -10px rgba(0,0,0, .5);
+}
+#wrapper>aside>section{
+	width:80px;
+	height:100%;
+	font-size:0;
+	line-height:80px;
+	text-align:center;
+	vertical-align:top;
+	display:inline-block;
+	background-color:#2A2A2A;
+}
+#wrapper>aside>section>a,
+#wrapper>aside>section>label{
+	color:white;
+	height:80px;
+	display:block;
+	cursor:pointer;
+	font-size:36px;
+	background-color:transparent;
+	transition:background-color .5s;
+}
+#wrapper>aside>nav{
+	color:white;
+	width:0;
+	height:100%;
+	overflow:hidden;
+	vertical-align:top;
+	display:inline-block;
+	transition:width .4s;
+	background-color:black;
+}
+#wrapper>aside>nav>section{
+	text-align:center;
+	height:100%;
+	display:none;
+	flex-wrap:wrap;
+	flex-direction:column;
+	justify-content:center;
+}
+input:checked~#wrapper>aside>nav{
+	width:300px;
+}
+#menu-shower:checked~#wrapper>aside>nav>section#main-menu,
+#keywords-shower:checked~#wrapper>aside>nav>section#keywords{
+	display:flex;
+}
+#wrapper>aside>nav>section>a{
+	color:white;
+	font:24px/1.5 ubuntu;
+}
+#wrapper>aside>nav>section>a:hover,
+#wrapper>aside>nav>section>a.selected{
+	color:#FDBE4A;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+#menu-shower-btn::before,
+#keywords-shower-btn::before{
+	width:100%;
+	height:100%;
+	display:inline-block;
+	transition:transform .5s;
+}
+#menu-shower-btn::before{content:"☰";}
+#keywords-shower-btn::before{content:"⌘";}
+#menu-shower:checked~#wrapper>aside>section>#menu-shower-btn,
+#keywords-shower:checked~#wrapper>aside>section>#keywords-shower-btn{
+	background-color:black;
+}
+#menu-shower:checked~#wrapper>aside>section>#menu-shower-btn::before,
+#keywords-shower:checked~#wrapper>aside>section>#keywords-shower-btn::before{
+	content:"✕";
+	color:#FDBE4A;
+	transform:rotate(90deg);
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+#wrapper>main{
+	height:100vh;
+	overflow:auto;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+#wrapper>main>footer{
+	padding:2vh 0;
+	margin:0 auto;
+	min-height:150px;
+	max-width:1024px;
+	border-top:1px solid #BBB;
+
+	display:flex;
+	align-items:flex-end;
+	justify-content:space-between;
+}
+#wrapper>main>footer>nav>a{
+	color:#444;
+	display:block;
+	font:16px/24px ubuntu;
+}
+#wrapper>main>footer>nav>a::before{
+	content:"●";
+	color:#00ADF0;
+	margin-right:5px;
+}
+#wrapper>main>footer>nav>a:hover{
+	color:#00ADF0;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+#wrapper>main>#feed{
+	margin:0 auto;
+	min-height:100%;
+	max-width:1080px;
+	padding:5vh 100px;
+	box-sizing:border-box;
+
+	display:grid;
+}
+#wrapper>main>article{
+	margin:0 auto;
+	min-height:100%;
+	max-width:1080px;
+	padding:5vh 100px;
+	box-sizing:border-box;
+}
+#wrapper>main>article>header,
+#wrapper>main>article>figure{
+	margin:0 -50px;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+#topbar{
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+
+	padding:15px;
+	margin:0 auto;
+	max-width:980px;
+	border-bottom:1px solid #CCC;
+}
+#breadcrumbs>a{
+	font-size:15px;
+}
+
+/*************************************/
+
+.snippet{
+	margin:10px 0;
+}
+
+.snippet:hover>div.caption{
+	
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+@media (max-width:720px){
+	#wrapper>main>#feed{
+		grid-template-columns:auto;
+	}
+}
+@media (min-width:721px) AND (max-width:980px){
+	#wrapper>main>#feed{
+		grid-gap:25px;
+		grid-template-columns:1fr 1fr;
+	}
+	#wrapper>main>#feed>a.snippet:nth-child(1),
+	#wrapper>main>#feed>a.snippet:nth-child(6),
+	#wrapper>main>#feed>a.snippet:nth-child(11),
+	#wrapper>main>#feed>a.snippet:nth-child(16){
+		font-size:32px;
+		grid-column:1/3;
+	}
+}
+@media (min-width:981px){
+	#wrapper>main>#feed{
+		grid-gap:35px;
+		grid-template-columns:1fr 1fr 1fr;
+	}
+	#wrapper>main>#feed>a.snippet:nth-child(1),
+	#wrapper>main>#feed>a.snippet:nth-child(9),
+	#wrapper>main>#feed>a.snippet:nth-child(17){
+		font-size:32px;
+		grid-column:1/3;
+	}
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+

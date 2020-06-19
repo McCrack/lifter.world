@@ -1,0 +1,139 @@
+#filters>fieldset{
+	border:1px solid #888;
+	border-width:1px 0 0 0;
+}
+#filters>fieldset>label{
+	display:block;
+}
+#wrapper>main>table>tbody>tr.new{
+	background-color:#FDD;
+}
+#wrapper>main>table>tbody>tr.shipped{
+	background-color:#CFD;
+}
+#wrapper>main>table>tbody>tr.canceled{
+	color:#CCC;
+}
+#wrapper>main>table>tbody>tr:hover{
+	cursor:pointer;
+	background-color:#BDF;
+}
+.pagination>a{
+	margin:0 4px;
+	color:inherit;
+}
+#order input[name="price"],
+#order input[name="amount"],
+#order input[name="OrderID"]{
+	width:76px;
+	height:26px;
+	text-align:center;
+	border-radius:3px;
+	border:1px solid #CCC;
+	vertical-align:middle;
+	box-sizing:border-box;
+	box-shadow:inset 0 0 5px -4px rgba(0,0,0, .5);
+	background-image:linear-gradient(to top, #FFF, #DDD);
+}
+#order input[name="OrderID"]{
+	font-size:15px;
+	font-weight:bold;
+}
+#order select[name="status"]{
+	height:28px;
+}
+div.select::before{
+	font-size:15px;
+	content:attr(title)":";
+}
+#order>fieldset{
+	margin:2px;
+	border-width:0;
+	padding:8px 10px;
+}
+#client>div,
+#delivery>div{
+	font-size:14px;
+	line-height:32px;
+	letter-spacing:.8px;
+	white-space:nowrap;
+	display:flex;
+	align-items:stretch;
+	justify-content:space-between;
+}
+#client>div>input,
+#delivery>div>input{
+	color:inherit;
+	margin:1px 0;
+	height:18px;
+	width:100%;
+	font-size:15px;
+	padding:0 10px;
+	border-width:0;
+	text-align:right;
+	background-color:transparent;
+	border-bottom:1px dotted #777;
+}
+#order textarea[name='message']{
+	resize:none;
+	width:100%;
+	height:80px;
+	border-width:0;
+	box-sizing:border-box;
+	background-color:transparent;
+}
+#order input[name='paid']+span{
+	color:#777;
+	font-size:80%;
+	cursor:pointer;
+}
+#order input[name='paid']:checked+span{
+	color:#EEE;
+}
+#order input[name='paid']+span::after{
+	content:" \ea53";
+	font:14px tools;
+}
+#order input[name='paid']:checked+span::after{
+	color:#0DA;
+	content:" \ea52";
+}
+#log{
+	font-size:14px;
+	line-height:20px;
+	position:relative;
+	box-sizing:border-box;
+	padding:10px 8px 60px 10px;
+	min-height:calc(100% - 512px);
+}
+#log>div>hr{
+	height:1px;
+	border-width:0;
+	background-color:#444;
+}
+#log>button,
+#log>textarea{
+	bottom:0;
+	height:50px;
+	border-width:0;
+	position:absolute;
+}
+#log>textarea{
+	left:0;
+	margin:0;
+	padding:8px;
+	resize:none;
+	box-sizing:border-box;
+	width:calc(100% - 50px);
+	box-shadow:inset 0 0 5px 2px rgba(0,0,0, .5);
+	background-image:linear-gradient(to top, #FFF, #DDD);
+}
+#log>button{
+	right:0;
+	width:50px;
+	cursor:pointer;
+	font:22px tools;
+}
+#log>button:hover{
+	background-color:#F24;
+}

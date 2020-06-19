@@ -1,0 +1,77 @@
+.chekbox:not(:checked)::before{
+	content:"☐";
+}
+.chekbox:checked::before{
+	content:"☑";
+}
+.dropbox::before{
+	content:"☒";
+}
+
+/*~~~~~~~~~~~~~~~~~~~~*/
+
+.favorite:not(:checked)::before{
+	content:"☆";
+}
+.favorite:checked::before{
+	content:"★";
+}
+
+/*~~~~~~~~~~~~~~~~~~~~*/
+
+.burger::before{
+	content:"☰";
+}
+.stack::before{
+	content:"⚌";
+	/*content:"⚊";*/
+}
+.pack::before{
+	content:"❖";
+}
+.add::before{
+	content:"⊕";
+	/*content:"⊞"*/
+	/*content:"✚";*/
+}
+.drop::before{
+	content:"⊗";
+	/*content:"⊠"*/
+}
+.close::before{
+	content:"✕";
+}
+.freeze::before{
+	content:"❄";
+}
+.warning::before{
+	content:"⚠";
+}
+.copyright::before{
+	content:"©";
+}
+
+.left-pointer::before{
+	content:"❬";
+	/*content:"❮";*/
+	/*content:"❰";*/
+}
+.right-pointer::before{
+	content:"❭";
+	/*content:"❯";*/
+	/*content:"❱";*/
+}
+
+.more::before{
+	content:"⋮";
+	/*content:"⋯";*/
+	/*content:"⋰";*/
+	/*content:"⋱";*/
+}
+
+.undo::before{
+	content:"⟲";
+}
+.undo::redo{
+	content:"⟳";
+}

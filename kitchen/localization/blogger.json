@@ -1,0 +1,38 @@
+{
+	"en":{
+		"author":"Author",
+		"created":"Created",
+		"create post":"Create post",
+		"save post":"Save post",
+		"delete post":"Delete post",
+		"caching":"Caching",
+		"metadata":"Metadata",
+		"ads":"Ads",
+		"show mediaset":"Show Mediaset",
+		"get post url":"Get Post URL"
+	},
+	"uk":{
+		"author":"Автор",
+		"created":"Створено",
+		"create post":"Створити пост",
+		"save post":"Зберегти пост",
+		"delete post":"Усунути пост",
+		"caching":"Кешувати",
+		"metadata":"Метадані",
+		"ads":"Реклама",
+		"show mediaset":"Показати медіанабір",
+		"get post url":"Отримати адресу поста"
+	},
+	"ru":{
+		"author":"Автор",
+		"created":"Создан",
+		"create post":"Создать пост",
+		"save post":"Сохранить пост",
+		"delete post":"Удалить пост",
+		"caching":"Кэшировать",
+		"metadata":"Метаданные",
+		"ads":"Реклама",
+		"show mediaset":"Показать медианабор",
+		"get post url":"Получить адрес поста"
+	}
+}

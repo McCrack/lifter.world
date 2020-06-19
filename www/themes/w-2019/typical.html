@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="<?=USER_LANG?>">
+<head>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117262486-2"></script>
+
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'UA-51627207-1');
+	</script>
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	
+	<title><?=$page->title?></title>
+	<meta name="description" content="<?=$page->description?>">
+
+	<meta name="theme-color" content="#111111">
+	
+	<title><?=$page->title?></title>
+	<meta name="description" content="<?=$page->description?>">
+
+	<meta name="theme-color" content="black">
+	<!-- ~~~ Favicon Iconset ~~~ -->
+	<!--
+	<link rel="icon" type="image/png" sizes="32x32" href="/themes/<?=THEME?>/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/themes/<?=THEME?>/images/favicon-16x16.png">
+	<link rel="mask-icon" href="/themes/<?=THEME?>/images/safari-pinned-tab.svg" color="#000000">
+	<meta name="msapplication-TileColor" content="#000000">
+	<meta name="msapplication-TileImage" content="/themes/<?=THEME?>/images/mstile-144x144.png">
+	<link rel="apple-touch-icon" href="/themes/<?=THEME?>/images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" href="/themes/<?=THEME?>/images/apple-touch-icon-60x60.png" sizes="60x60">
+	<link rel="apple-touch-icon" href="/themes/<?=THEME?>/images/apple-touch-icon-72x72.png" sizes="72x72">
+	<link rel="apple-touch-icon" href="/themes/<?=THEME?>/images/apple-touch-icon-76x76.png" sizes="76x76">
+	<link rel="apple-touch-icon" href="/themes/<?=THEME?>/images/apple-touch-icon-114x114.png" sizes="114x114">
+	<link rel="apple-touch-icon" href="/themes/<?=THEME?>/images/apple-touch-icon-120x120.png" sizes="120x120">
+	<link rel="apple-touch-icon" href="/themes/<?=THEME?>/images/apple-touch-icon-144x144.png" sizes="144x144">
+	<link rel="apple-touch-icon" href="/themes/<?=THEME?>/images/apple-touch-icon-152x152.png" sizes="152x152">
+	<link rel="apple-touch-icon" href="/themes/<?=THEME?>/images/apple-touch-icon-180x180.png" sizes="180x180">
+	<link rel="icon" type="image/png" sizes="32x32" href="/themes/<?=THEME?>/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/themes/<?=THEME?>/images/favicon-16x16.png">
+	-->
+
+	<link rel="icon" type="image/png" href="/themes/<?=THEME?>/images/favicon.png">
+
+	<link rel="canonical" href="<?=$page->canonical?>">
+
+	<meta property="fb:pages" content="<?=$config->{'fb:pages'}?>">
+
+	<meta property="og:title" content="<?=$page->header?>">
+	<meta property="og:type" content="website">
+	<meta property="og:description" content="<?=$page->description?>">
+
+	<meta property="og:site_name" content="<?=$page->SiteName?>">
+	
+	<?php
+	$cover_url = parse_url($page->preview);
+	$preview = getimagesize("../img".$cover_url['path'])
+	?>
+	<meta property="og:image" content="<?=$page->preview?>">
+
+	<meta property="og:image:type" content="<?=$preview['mime']?>">
+	<meta property="og:image:height" content="<?=$preview[1]?>">
+	<meta property="og:image:width" content="<?=$preview[0]?>">
+
+	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet"> 
+
+	<style>
+	<?$types = ["otf"=>"opentype","ttf"=>"truetype","woff"=>"woff"];
+	foreach(array_map("pathinfo", glob("fonts/*.{otf,ttf,woff}", GLOB_BRACE)) as $file):?>
+    @font-face{
+        font-family:'<?=str_replace("-", " ", $file['filename'])?>';
+        src:url(/<?=($file['dirname']."/".$file['basename'])?>) format('<?=$types[$file['extension']]?>');
+    }
+    <?endforeach?>
+    </style>
+	<style>
+	@import "/themes/<?=THEME?>/styles/index.css";
+	@import "/themes/<?=THEME?>/styles/feed.css";
+	@import "/themes/<?=THEME?>/styles/content.css";
+	<?if(MOBILE):?>
+	@import "/themes/<?=THEME?>/styles/mobile.css";
+	<?else:?>
+	@import "/themes/<?=THEME?>/styles/desktop.css";
+	<?endif?>
+	</style>
+
+	<script src="/js/C-Lab.js"></script>
+	<script>
+	var PAGEID = "<?=PAGE_ID?>";
+	var LANGUAGE = "<?=USER_LANG?>";
+	new function(){
+		var analytics = this;
+		analytics.XHR = new XMLHttpRequest();
+		var params = { PageID:PAGEID, input:Date.now() }
+		window.onbeforeunload = function(){
+			params['output'] = Date.now();
+			analytics.XHR.open("POST", "/ajax/analytics/"+(session.open() ? 1 : 0), false);
+			analytics.XHR.setRequestHeader("Content-Type", "application/json");
+			analytics.XHR.send(JSON.stringify(params));
+		}
+	}
+	</script>
+	<script src="/themes/<?=THEME?>/scripts/main.js" defer></script>
+	<script src="/ajax/wordlist/<?=USER_LANG?>?d[0]=main&d[1]=keywords" charset="utf-8" defer onload=""></script>
+
+	<script async id="__lxGc__rtr" type="text/javascript" src="//s.clickiocdn.com/t/203166/360.js"></script>
+	<script async src="//s.clickiocdn.com/t/common_258.js"></script>
+	
+	<script type="text/javascript" defer src="//assets.pinterest.com/js/pinit.js"></script>
+	<script defer id="facebook-jssdk" src="//connect.facebook.net/ru_RU/sdk.js" onload="
+	window.fbAsyncInit = FB.init({
+		appId:<?=$config->{'fb:app_id'}?>,
+		xfbml:true,
+		cookie:true,
+		status:true,
+		version:'v2.9'
+	})"></script>
+
+	<?foreach($page->schemes as $schema):?>
+	<script type="application/ld+json"><?=stripcslashes(JSON::encode($schema))?></script>
+	<?endforeach?>
+</head>
+<body class="silver-bg">
+	<div id="fb-root"></div>
+	<div id="substrate"></div>
+	<section id="loft">
+		<div id="topbar" class="topbar social-btns" align="center">
+			<nav>
+				<?foreach($keywords as $keyword):?>
+				<a href="/<?=$keyword?>"><?=$wordlist->{$keyword}?></a>
+				<?endforeach?>
+			</nav>
+			<a rel="nofolow" target="_blank" href="https://facebook.com/liftercomua">&#xf101;</a>
+			<a rel="nofolow" target="_blank" href="https://www.instagram.com/ua_lifter/">&#xf106;</a>
+			<a rel="nofolow" target="_blank" href="http://chats.viber.com/lifterua">&#xf113;</a>
+		</div>
+		<div id="cover" class="black-bg"><a href="/">LIFTER.</a></div>
+		<div class="topbar">
+			<br>
+		</div>
+	</section>
+	<main>
+	
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+<div class="content-with-sidebar">
+	<article class="light">
+		<header>
+			<h1><?=$page->header?></h1>
+		</header>
+		<br><br><br>
+		
+		<?=$page->getContent()?>
+
+		<br><hr><br><br>
+	</article>
+	<?if(DESKTOP):?>
+	<aside>
+		<?
+		define("NOW", time());
+		$top = $mySQL->get("SELECT * FROM gb_pages CROSS JOIN gb_blogfeed USING(PageID) WHERE created BETWEEN {int} AND {int} ORDER BY views DESC LIMIT 5", NOW-172800, NOW);
+		foreach($top as $snippet):?>
+		<a href="/<?=(translite($snippet['header']).'-'.$snippet['PageID'])?>">
+			<div class="snippet">
+				<div class="preview"><img src="<?=$snippet['preview']?>" alt="<?=$snippet['header']?>"></div>
+				<div class="caption"><span><?=$snippet['header']?></span></div>
+				<br>
+			</div>
+		</a>
+		<?endforeach?>
+	</aside>
+	<?endif?>
+</div>
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+	</main>
+	<div id="copyright" class="topbar" align="center">© <?=$page->SiteName?> | <?=date("Y")?> </div>
+	<section id="footer" class="rainbow">
+		<nav id="footer-keywords">
+			<?foreach($keywords as $keyword):?>
+			<a href="<?=LANG_INDEX?>/<?=$keyword?>"><?=$wordlist->{$keyword}?></a>
+			<?endforeach?>
+		</nav>
+		<nav id="we-in-social" class="social-btns">
+			<a rel="nofolow" target="_blank" href="https://facebook.com/liftercomua">&#xf101; Facebook</a>
+			<a rel="nofolow" target="_blank" href="https://www.instagram.com/ua_lifter/">&#xf106; Instagram</a>
+			<a rel="nofolow" target="_blank" href="http://chats.viber.com/lifterua">&#xf113; Viber</a>
+		</nav>
+		<nav id="service-pages">
+			<a href="#" onclick="if(window.__lxG__consent__ !== undefined) {window.__lxG__consent__.showConsent()} else {alert('This function works only for users from the European Economic Area (EEA).')}; return false">Change privacy settings</a>
+			<?foreach($map['static'] as $category):?>
+			<a href="<?=LANG_INDEX?>/<?=$category['name']?>"><?=$category['header']?></a>
+			<?endforeach?>
+		</nav>
+	</section>
+</body>
+</html>

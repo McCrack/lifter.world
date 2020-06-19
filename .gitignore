@@ -1,0 +1,5 @@
+.DS_Store
+en/config.init
+www/config.init
+lab/config.init
+kitchen/config.init

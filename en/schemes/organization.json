@@ -1,0 +1,18 @@
+{
+    "@context":"http://schema.org",
+    "@type":"Organization",
+    "name":"md:SiteName",
+    "url":"https://lifter.world",
+    "logo":{
+        "@type":"ImageObject",
+        "url":"md:logo",
+        "width":"180px",
+        "height":"180px"
+    },
+    "email":"k.shiyan@gmail.com",
+    "sameAs":[
+        "https://facebook.com/videolifter",
+        "https://www.instagram.com/ua_lifter",
+        "http://chats.viber.com/lifterua"
+    ]
+}

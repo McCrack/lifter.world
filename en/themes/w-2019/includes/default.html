@@ -1,0 +1,75 @@
+<div class="content-with-sidebar">
+	<article class="light">
+		<header>
+			<figure>
+				<img src="<?=$page->preview?>" alt="<?=$page->header?>">
+			</figure>
+			<h1><?=$page->header?></h1>
+			<div class="right"><div class="fb-save"></div></div>
+			<h2><?=$page->subheader?></h2>
+		</header>
+		<div id="fb-like" align="center" class="fb-like left" data-href="https://www.facebook.com/Lifteruk" data-layout="standard" data-action="like" data-show-faces="true" data-share="false" data-width="320px"></div>
+		<br><br><br>
+		
+		<?=$page->getContent()?>
+	
+		<div class="right" align="right">
+			<address class="title" title="author" data-translate="title"><?=$page->author?></address>
+			<time dateTime="<?=$page->Created_ISO_8601?>"><?=date("d M, Y", $page->created)?></time>
+		</div>
+
+		<div class="social-btns" title="<?=$wordlist->share?>:">
+			<a title="Viber" class="viber icons title" href="viber://forward?text=<?=$canonical?>"></a>
+			<a title="Telegram" class="telegram icons title" href="tg://msg?url=<?=$canonical?>"></a>
+			<span title="Facebook messenger" class="messenger icons title" onclick="send.messenger()"></span>
+			<span title="Facebook" class="facebook icons title" onclick="share.facebook()">
+			&#xf101; <span data-translate="textContent">share</span>
+			</span>
+			<?if(MOBILE):?>
+			<script>
+			(function(bar){
+				window.addEventListener("scroll",function(){
+					bar.classList.toggle("sticky", ((doc.currentScrollTop < (bar.previousElementSibling.offsetTop-doc.height)) && (doc.currentScrollTop > 280)));
+				});
+			})(document.currentScript.parentNode)
+			</script>
+			<?endif?>
+		</div>
+		<br>
+		<div id="fb-like" class="fb-like left" data-href="https://www.facebook.com/Lifteruk" data-layout="standard" data-action="like" data-show-faces="true" data-share="false" data-width="320px"></div>
+		<br><hr><br><br>
+	</article>
+	<?if(DESKTOP):?>
+	<aside>
+		<?
+		define("NOW", time());
+		$top = $mySQL->get("SELECT * FROM gb_pages CROSS JOIN gb_blogfeed USING(PageID) WHERE created BETWEEN {int} AND {int} ORDER BY views DESC LIMIT 5", NOW-172800, NOW);
+		foreach($top as $snippet):?>
+		<a href="/<?=(translite($snippet['header']).'-'.$snippet['PageID'])?>">
+			<div class="snippet">
+				<div class="preview"><img src="<?=$snippet['preview']?>" alt="<?=$snippet['header']?>"></div>
+				<div class="caption"><span><?=$snippet['header']?></span></div>
+				<br>
+			</div>
+		</a>
+		<?endforeach;
+		if(ADS):?>
+		<div class="adsense-300x600">
+			<script async type='text/javascript' src='//s.clickiocdn.com/t/common_258.js'></script>
+			<script class='__lxGc__' type='text/javascript'>
+			((__lxGc__=window.__lxGc__||{'s':{},'b':0})['s']['_215185']=__lxGc__['s']['_215185']||{'b':{}})['b']['_630947']={'i':__lxGc__.b++};
+			</script>
+			<br><br>
+			<div class="social-btns" align="center">
+				<a title="Viber" class="viber icons title" href="viber://forward?text=<?=$canonical?>"></a>
+				<a title="Telegram" class="telegram icons title" href="tg://msg?url=<?=$canonical?>"></a>
+				<span title="Facebook messenger" class="messenger icons title" onclick="send.messenger()"></span>
+				<span title="Facebook" class="facebook icons title" onclick="share.facebook()">
+				&#xf101; <span data-translate="textContent">share</span>
+				</span>
+			</div>
+		</div>
+		<?endif?>
+	</aside>
+	<?endif?>
+</div>
